@@ -3,10 +3,12 @@ import { LampContainer } from "@/components/ui/lamp";
 import { Button } from "@nextui-org/react";
 import { RiDropLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { testimonials } from "@/constants/testimonials";
 const LandingScreen = () => {
   return (
-    <div className="h-screen w-screen">
-      <LampContainer>
+    <div className="h-screen w-screen flex flex-col justify-around">
+      <LampContainer className="flex flex-col items-center justify-around">
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,8 +21,8 @@ const LandingScreen = () => {
         >
           <div className="flex flex-col items-center justify-center gap-10">
             <div className="flex flex-col items-center justify-center">
-              <img src="/Images/logo.png" className="w-[70%]"/>
-              Discover Your Water's Quality
+              <img src="/Images/logo.png" className="w-[50%]"/>
+              Size Matters<br /> Check Your Stats!
             </div>
             <Link to="/analyse">
               <Button
@@ -36,6 +38,12 @@ const LandingScreen = () => {
           </div>
         </motion.h1>
       </LampContainer>
+      <InfiniteMovingCards
+      className="translate-y-72 lg:translate-y-44 lg:translate-x-32"
+        items={testimonials}
+        direction="right"
+        speed="slow"
+      />
     </div>
   );
 };
