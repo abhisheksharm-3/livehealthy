@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@nextui-org/react": "^2.3.5",
@@ -26,6 +27,7 @@
     "react-hook-form": "^7.51.3",
     "react-router-dom": "^6.22.3",
     "remixicon": "^4.2.0",
+    "simplex-noise": "^4.0.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.163.0",

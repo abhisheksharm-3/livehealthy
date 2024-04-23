@@ -49,21 +49,49 @@ const formSchema = z.object({
 
 const AnalyseScreen = () => {
   const [showResult, setShowResult] = useState(false);
-  const [isPotable, setIsPotable] = useState(false);
+  const [isHealthResult, setHealthResult] = useState({});
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    // For demonstration purposes, let's assume water is safe if pH is between 6 and 8.
-    const isSafeToDrink = values.pH >= 6 && values.pH <= 8;
-    setIsPotable(isSafeToDrink);
-    setShowResult(true);
-    console.log(values);
-  }
+  const onSubmit = async (values: any) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/analyse`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "data": {
+              "Age": 30,
+              "CAEC": 2,
+              "CALC": 2,
+              "CH2O": 3,
+              "FAF": 4,
+              "FAVC": 2,
+              "FCVC": 3,
+              "Gender": 2,
+              "Height": 175,
+              "MTRANS": 4,
+              "NCP": 3,
+              "SCC": 3,
+              "SMOKE": 2,
+              "TUE": 1,
+              "Weight": 65,
+              "family_history_with_overweight": 2
+          }
+      })
+      });
+
+      const result = await response.json();
+      setHealthResult(result);
+      setShowResult(true);
+      console.log(result);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  };
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-between">
       <NavbarComponent />
@@ -239,36 +267,19 @@ const AnalyseScreen = () => {
         </Form>
       ) : (
         <div className="text-center flex flex-col gap-4 items-center">
-          <h2 className="text-2xl font-semibold">
-            {isPotable
-              ? "🚰 Good news! The water is as safe as a rubber ducky in a bubble bath! 🛁"
-              : "😱 Uh-oh! Looks like the water isn't ready for a tea party just yet. 🍵"}
-          </h2>
-          {isPotable ? (
-            <img
-              src="/GIFS/safe.gif"
-              alt="Safe Water GIF"
-              className="w-[90%] rounded-md"
-            />
-          ) : (
-            <img
-              src="/GIFS/unsafe.gif"
-              alt="Unsafe Water GIF"
-              className="w-[90%] rounded-md"
-            />
-          )}
-          <p className="text-lg">
-            Thanks a million for your submission! We're on it like a fish on a
-            bicycle. 🐟🚲
-          </p>
-          <Button
-            onPress={() => {
-              setShowResult(false);
-            }}
-            color="primary"
-          >
-            Click Here to Start a New Analysis! 🌊
-          </Button>
+        <div className="space-y-4 max-w-2xl text-black">
+    <h2 className="text-2xl font-semibold text-center">Analysis Report</h2>
+    <ul className="list-disc bg-white shadow-md rounded-lg p-4">
+      {Object.entries(isHealthResult).map(([key, value]) => (
+        <li key={key}>
+          <strong>{key.replace(/_/g, ' ')}:</strong> {value.toString()}
+        </li>
+      ))}
+    </ul>
+    <Button onClick={() => setShowResult(false)} color="primary">
+      New Analysis
+    </Button>
+  </div>
         </div>
       )}
       <Footer />

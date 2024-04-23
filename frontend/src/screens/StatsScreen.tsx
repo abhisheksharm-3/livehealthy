@@ -6,27 +6,27 @@ const StatsScreen = () => {
     <div className="h-screen w-screen flex flex-col items-center justify-between">
       <NavbarComponent />
       <div className="flex flex-col items-center justify-center flex-1">
-        <h1 className="text-4xl font-bold mb-6">Water Quality Stats</h1>
+        <h1 className="text-4xl font-bold mb-6">Health and Obesity Stats</h1>
         <div className="p-6 rounded-lg shadow-md max-w-md">
           <div className="mb-4">
-            <p className="text-lg font-semibold">pH Level: <span className="text-gray-400">7.2</span></p>
-            <p className="text-sm text-gray-300">A measure of how acidic or basic the water is. Ideally between 6.5 - 8.5</p>
+            <p className="text-lg font-semibold">Body Mass Index (BMI): <span className="text-gray-400">24</span></p>
+            <p className="text-sm text-gray-300">A measure of body fat based on height and weight. Ideal range is 18.5 - 24.9</p>
           </div>
           <div className="mb-4">
-            <p className="text-lg font-semibold">Temperature: <span className="text-gray-400">20°C</span></p>
-            <p className="text-sm text-gray-300">The temperature of the water. Varies depending on the environment.</p>
+            <p className="text-lg font-semibold">Blood Pressure: <span className="text-gray-400">120/80 mmHg</span></p>
+            <p className="text-sm text-gray-300">Indicates heart health. Normal blood pressure is typically around 120/80 mmHg.</p>
           </div>
           <div className="mb-4">
-            <p className="text-lg font-semibold">Turbidity: <span className="text-gray-400">5 NTU</span></p>
-            <p className="text-sm text-gray-300">A measure of water clarity. Higher turbidity can indicate pollution.</p>
+            <p className="text-lg font-semibold">Cholesterol: <span className="text-gray-400">190 mg/dL</span></p>
+            <p className="text-sm text-gray-300">Total cholesterol level. Desirable is below 200 mg/dL.</p>
           </div>
           <div className="mb-4">
-            <p className="text-lg font-semibold">Dissolved Oxygen: <span className="text-gray-400">8 mg/L</span></p>
-            <p className="text-sm text-gray-300">The amount of oxygen dissolved in the water. Crucial for aquatic life.</p>
+            <p className="text-lg font-semibold">Blood Glucose: <span className="text-gray-400">90 mg/dL</span></p>
+            <p className="text-sm text-gray-300">Normal fasting value. Prediabetes starts at 100 mg/dL.</p>
           </div>
           <div>
-            <p className="text-lg font-semibold">Total Dissolved Solids: <span className="text-gray-400">150 ppm</span></p>
-            <p className="text-sm text-gray-300">The total amount of dissolved substances in the water. Higher levels may indicate pollution.</p>
+            <p className="text-lg font-semibold">Fitness Score: <span className="text-gray-400">75/100</span></p>
+            <p className="text-sm text-gray-300">A composite score based on aerobic fitness, strength, and flexibility.</p>
           </div>
         </div>
       </div>

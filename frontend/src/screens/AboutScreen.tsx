@@ -76,19 +76,17 @@ const AboutScreen = () => {
       <NavbarComponent />
       <div className="container mx-auto px-4 py-12 overflow-scroll scrollbar-hide">
         <h1 className="text-4xl font-bold mb-8 text-center">
-          About Our Website
+          About Our Health Analytics
         </h1>
         <div className="">
           <p className="text-lg mb-6 text-center">
-            Welcome to our website! We're thrilled to have you here. Let's dive
-            into what we're all about. Hover on the Cards Below.
+            Welcome to our health analytics platform! We're dedicated to
+            providing insights into obesity and wellness. Hover over the cards
+            below to learn more.
           </p>
           <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-4 mx-auto px-8">
             <Card
-              title="Our website was created as a part of a machine learning assignment.
-            We're passionate about leveraging technology to solve real-world
-            problems, and this project provided us with the perfect opportunity
-            to do just that."
+              title="This platform was born from a desire to apply machine learning in enhancing health. We focus on offering accessible, actionable obesity analytics."
               icon={<RiHeart2Fill />}
             >
               <CanvasRevealEffect
@@ -96,11 +94,11 @@ const AboutScreen = () => {
                 containerClassName="bg-emerald-900"
                 dotSize={2}
               />
+              {/* Radial gradient for the cute fade */}
+              <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
             <Card
-              title="Our website provides a platform for water analysis. Using machine
-            learning techniques, we've developed a backend hosted on Flask and
-            trained using XGBoost to analyze the potability of water samples."
+              title="Leveraging cutting-edge technology, our system utilizes machine learning models, including neural networks, to assess and predict obesity levels based on various health markers."
               icon={<RiLightbulbFlashFill />}
             >
               <CanvasRevealEffect
@@ -116,10 +114,7 @@ const AboutScreen = () => {
               <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
             <Card
-              title="We're on a mission to make water analysis more accessible and
-            reliable. Whether you're a student, researcher, or just someone
-            curious about water quality, we invite you to explore our website
-            and join us on this journey."
+              title="Join us in transforming how we understand and approach obesity. Our tools are designed for everyone from healthcare professionals to individuals seeking personal health insights."
               icon={<RiTeamFill />}
             >
               <CanvasRevealEffect
@@ -128,6 +123,8 @@ const AboutScreen = () => {
                 colors={[[125, 211, 252]]}
                 dotSize={2}
               />
+              {/* Radial gradient for the cute fade */}
+              <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
           </div>
         </div>
