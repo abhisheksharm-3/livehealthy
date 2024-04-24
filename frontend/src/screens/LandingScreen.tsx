@@ -3,8 +3,8 @@ import { LampContainer } from "@/components/ui/lamp";
 import { Button } from "@nextui-org/react";
 import { RiDropLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-import { testimonials } from "@/constants/testimonials";
+// import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+// import { testimonials } from "@/constants/testimonials";
 const LandingScreen = () => {
   return (
     <div className="h-screen w-screen flex flex-col justify-around">
