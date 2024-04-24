@@ -46,7 +46,6 @@ def analyze():
 
         # Construct response including both original data and prediction
         response_data = {
-            "request_data": data,
             "prediction_result": predictions.tolist()
         }
         

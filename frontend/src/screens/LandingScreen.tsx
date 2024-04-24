@@ -38,12 +38,12 @@ const LandingScreen = () => {
           </div>
         </motion.h1>
       </LampContainer>
-      <InfiniteMovingCards
-      className="translate-y-72 lg:translate-y-44 lg:translate-x-32"
+      {/* <InfiniteMovingCards
+      className="translate-y-72 lg:translate-y-44 lg:translate-x-32 2xl:translate-y-72 2xl:translate-x-80"
         items={testimonials}
         direction="right"
         speed="slow"
-      />
+      /> */}
     </div>
   );
 };
