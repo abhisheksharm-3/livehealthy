@@ -75,7 +75,7 @@ const formSchema = z.object({
 });
 
 const AnalyseScreen = () => {
-  const [showResult, setShowResult] = useState(true);
+  const [showResult, setShowResult] = useState(false);
   const [predictionLabel, setPredictionLabel] = useState<string>("");
   const [requestData, setRequestData] = useState({});
   const form = useForm<z.infer<typeof formSchema>>({
