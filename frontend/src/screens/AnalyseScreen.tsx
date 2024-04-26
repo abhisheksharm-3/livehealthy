@@ -589,9 +589,9 @@ const AnalyseScreen = () => {
           </form>
         </Form>
       ) : (
-        <div className="text-center flex flex-col gap-4 items-center">
+        <div className="text-center flex flex-col gap-4 items-center container py-6 overflow-hidden">
           {showResult && (
-            <div className="w-screen flex flex-col items-center justify-between overflow-hidden pb-10 lg:pb-0">
+            <div className="w-screen flex flex-col items-center justify-between overflow-scroll pb-10 lg:pb-0 scrollbar-hide">
               <div className="container flex flex-col items-center justify-center flex-1 px-4 text-center">
                 <h1 className="text-4xl font-bold mb-4">
                   Ready or not, here&apos;s what we&apos;ve crunched out for
