@@ -35,6 +35,57 @@ const predictionMapping: { [key in PredictionKey]?: string } = {
   8: "Obesity Level III",
 };
 
+type ValueMapping = { label: string; values: { [key: number]: string } };
+type DescriptiveLabels = {
+  [key: string]: string | ValueMapping;
+};
+
+const descriptiveLabels: DescriptiveLabels = {
+  Age: "Age",
+  Gender: { label: "Gender", values: { 2: "Female", 3: "Male" } },
+  Height: "Height (cm)",
+  Weight: "Weight (kg)",
+  CALC: {
+    label: "Alcohol Consumption",
+    values: { 2: "Never", 3: "Sometimes", 4: "Frequently", 5: "Almost Daily" },
+  },
+  FAVC: {
+    label: "Frequent High-Calorie Food Intake",
+    values: { 2: "No", 3: "Yes" },
+  },
+  FCVC: {
+    label: "Vegetable Intake in Meals",
+    values: { 1: "Never", 2: "Sometimes", 3: "Always" },
+  },
+  NCP: "Number of Main Meals per Day",
+  SCC: { label: "Calorie Counting Habit", values: { 2: "No", 3: "Yes" } },
+  SMOKE: { label: "Smoking Status", values: { 2: "No", 3: "Yes" } },
+  CH2O: "Daily Water Intake (liters)",
+  family_history_with_overweight: {
+    label: "Family History of Overweight",
+    values: { 2: "No", 3: "Yes" },
+  },
+  FAF: {
+    label: "Weekly Physical Activity Frequency",
+    values: { 0: "Never", 1: "Sometimes", 2: "Frequently", 3: "Daily" },
+  },
+  TUE: "Daily Technology Use (hours)",
+  CAEC: {
+    label: "Snacking Between Meals",
+    values: { 2: "Never", 3: "Sometimes", 4: "Frequently", 5: "Always" },
+  },
+  MTRANS: {
+    label: "Main Mode of Transportation",
+    values: {
+      2: "Car",
+      3: "Motorbike",
+      4: "Bicycle",
+      5: "Public Transport",
+      6: "Walking",
+    },
+  },
+};
+
 const formSchema = z.object({
   Age: z.coerce
     .number()
@@ -178,7 +229,12 @@ const AnalyseScreen = () => {
   };
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-between overflow-hidden pb-10 lg:pb-0">
-      <Loader loadingStates={loadingStates} loading={loading} duration={4000} />
+      <Loader
+        loadingStates={loadingStates}
+        loading={loading}
+        duration={3500}
+        loop={false}
+      />
       <NavbarComponent />
       {!showResult ? (
         <Form {...form}>
@@ -194,7 +250,11 @@ const AnalyseScreen = () => {
                   <FormItem>
                     <FormLabel>Age</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter Age" {...field} type="number" />
+                      <Input
+                        placeholder="How many candles on your cake?"
+                        {...field}
+                        type="number"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -229,7 +289,7 @@ const AnalyseScreen = () => {
                     <FormLabel>Height</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter Height"
+                        placeholder="Your Altitude (Height in cm)"
                         {...field}
                         type="number"
                       />
@@ -246,7 +306,7 @@ const AnalyseScreen = () => {
                     <FormLabel>Weight</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter Weight"
+                        placeholder="Your Gravity (Weight in Kg)"
                         {...field}
                         type="number"
                       />
@@ -264,7 +324,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select Your Alchohol Frquency" />
+                          <SelectValue placeholder="Cheers! How often?" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -289,7 +349,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Calorie Fest—Yay or Nay?" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -312,7 +372,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Greens on Your Plate?" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -338,7 +398,7 @@ const AnalyseScreen = () => {
                       <Input
                         {...field}
                         type="number"
-                        placeholder="Enter Number of Main Meals"
+                        placeholder="Meal Deal (How Many?)"
                       />
                     </FormControl>
                     <FormMessage />
@@ -356,7 +416,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Watching Those Numbers?" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -377,7 +437,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Puff or Pass? (Smoking)" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -397,7 +457,7 @@ const AnalyseScreen = () => {
                     <FormLabel>How much water do you drink daily?</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter Amount of Water in Litres"
+                        placeholder="Hydration Station (Liters)"
                         {...field}
                         type="number"
                       />
@@ -417,7 +477,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Genes Got Weight?" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -440,7 +500,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Sweat Score" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -464,7 +524,7 @@ const AnalyseScreen = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter Time in Hours"
+                        placeholder="Tech Tally (Daily Hours)"
                         {...field}
                         type="number"
                       />
@@ -482,7 +542,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Between-Meal Bite Rate" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -507,7 +567,7 @@ const AnalyseScreen = () => {
                     <Select onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select Your Mode of Transportation" />
+                          <SelectValue placeholder="How Do You Roll?" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -523,38 +583,91 @@ const AnalyseScreen = () => {
                 )}
               />
             </div>
-            <Button type="submit" color="primary">
-              Submit
+            <Button type="submit" color="primary" isLoading={loading}>
+              Start My Health Audit
             </Button>
           </form>
         </Form>
       ) : (
         <div className="text-center flex flex-col gap-4 items-center">
           {showResult && (
-            <div className="space-y-4 max-w-2xl text-black">
-              <h2 className="text-2xl font-semibold text-center text-white tracking-wide">
-                Your Current LifeStyle Suggests that you either have{" "}
-                {predictionLabel} or are heading towards the same
-              </h2>
-              <div className="text-white shadow-md rounded-lg p-4">
-                <h3 className="text-lg font-semibold">Analysed User Data</h3>
-                <div className="">
-                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-8">
-                    {Object.entries(requestData).map(([key, value]) => (
-                      <li key={key}>{`${key}: ${value}`}</li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="w-screen flex flex-col items-center justify-between overflow-hidden pb-10 lg:pb-0">
+              <div className="container flex flex-col items-center justify-center flex-1 px-4 text-center">
+                <h1 className="text-4xl font-bold mb-4">
+                  Ready or not, here&apos;s what we&apos;ve crunched out for
+                  you!
+                </h1>
+
+                {predictionLabel ? (
+                  <h2
+                    className={`text-2xl font-semibold text-center mb-4 ${
+                      predictionLabel.includes("Obesity")
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
+                  >
+                    {predictionLabel.includes("Obesity") ||
+                    predictionLabel.includes("Overweight")
+                      ? "Warning Bells! 🚨 Time to rethink some habits."
+                      : "You're in the Clear! 🌟 Keep up the Great Work!"}
+                  </h2>
+                ) : null}
+
+                <p className="mb-6">
+                  {predictionLabel
+                    ? `Looks like you’re steering towards: ${predictionLabel} – ${
+                        predictionLabel.includes("Obesity") ||
+                        predictionLabel.includes("Overweight")
+                          ? "Time for a course correction?"
+                          : "Keep up the Great Work!"
+                      }`
+                    : "Loading your results... Please wait."}
+                </p>
+
+                {showResult && (
+                  <div className="shadow-lg rounded-lg p-6 max-w-3xl w-full">
+                    <h3 className="text-lg font-semibold mb-4">
+                      Quick rewind: Here&apos;s the data you shared with us:
+                    </h3>
+                    <ul className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                      {Object.entries(requestData).map(([key, value]) => {
+                        const item = descriptiveLabels[key];
+                        const label =
+                          typeof item === "object" ? item.label : item;
+                        const valueDescription =
+                          typeof item === "object" &&
+                          item.values &&
+                          typeof value === "number"
+                            ? item.values[value]
+                            : value;
+                        return (
+                          <li key={key} className="rounded p-2">
+                            <strong>{label || key}:</strong>{" "}
+                            {String(valueDescription)}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                    <div className="mt-6">
+                      <Button
+                        onClick={() => {
+                          setShowResult(false);
+                          form.reset(); // Assuming resetForm is a function that resets the form
+                        }}
+                        color="warning"
+                      >
+                        Roll the Dice Again on Your Health Analysis!
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
+                {!showResult && (
+                  <div className="text-center text-xl">
+                    <p>Just a moment while we compute your health stats...</p>
+                  </div>
+                )}
               </div>
-              <Button
-                onClick={() => {
-                  setShowResult(false);
-                  form.reset();
-                }}
-                color="primary"
-              >
-                Get a New Analysis
-              </Button>
             </div>
           )}
         </div>
