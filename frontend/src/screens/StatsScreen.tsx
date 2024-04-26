@@ -5,8 +5,8 @@ const StatsScreen = () => {
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-between pb-10 lg:pb-0">
       <NavbarComponent />
-      <div className="flex flex-col items-center justify-center flex-1 container px-4 pt-56 scrollbar-hide overflow-scroll">
-        <h1 className="text-4xl font-bold mb-6">Global Health and Obesity Stats</h1>
+      <div className="flex flex-col items-center justify-center flex-1 container px-4 pt-[700px] lg:pt-56 scrollbar-hide overflow-scroll">
+        <h1 className="text-4xl font-bold mb-6 text-center">Global Health and Obesity Stats</h1>
         <div className="rounded-lg shadow-lg max-w-4xl p-6 text-white">
           <div className="mb-6">
             <h2 className="text-2xl font-semibold mb-3">Body Mass Index (BMI)</h2>
