@@ -601,7 +601,8 @@ const AnalyseScreen = () => {
                 {predictionLabel ? (
                   <h2
                     className={`text-2xl font-semibold text-center mb-4 ${
-                      predictionLabel.includes("Obesity")
+                      predictionLabel.includes("Obesity") ||
+                      predictionLabel.includes("Overweight")
                         ? "text-red-500"
                         : "text-green-500"
                     }`}
