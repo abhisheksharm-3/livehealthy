@@ -118,7 +118,7 @@ const AnalyseScreen = () => {
     }
   };  
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-between">
+    <div className="h-screen w-screen flex flex-col items-center justify-between overflow-hidden ">
       <NavbarComponent />
       {!showResult ? (
         <Form {...form}>

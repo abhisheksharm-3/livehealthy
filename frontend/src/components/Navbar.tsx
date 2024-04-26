@@ -1,3 +1,5 @@
+import React from "react";
+import { useLocation } from "react-router-dom"; // Import useLocation
 import {
   Navbar,
   NavbarBrand,
@@ -10,12 +12,16 @@ import {
   Link,
 } from "@nextui-org/react";
 import { RiGithubLine } from "@remixicon/react";
-import React from "react";
 
 const NavbarComponent = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const location = useLocation(); // Hook to get the current location
 
-  const menuItems = ["Analyse", "Statistics", "About Us"];
+  const menuItems = [
+    { label: "Analyse", href: "/analyse" },
+    { label: "Statistics", href: "/stats" },
+    { label: "About Us", href: "/about" }
+  ];
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -30,22 +36,18 @@ const NavbarComponent = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="/analyse">
-            Analyse
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="/stats" aria-current="page">
-            Statistics
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/about">
-            About Us
-          </Link>
-        </NavbarItem>
+        {menuItems.map((item, index) => (
+          <NavbarItem
+            key={index}
+            isActive={location.pathname === item.href} // Set active based on the current route
+          >
+            <Link href={item.href}>
+              {item.label}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
+
       <NavbarContent justify="end">
         <NavbarItem>
           <Button
@@ -60,22 +62,21 @@ const NavbarComponent = () => {
           </Button>
         </NavbarItem>
       </NavbarContent>
+
       <NavbarMenu>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem key={`${item.label}-${index}`}>
             <Link
               color={
-                index === 2
+                location.pathname === item.href
                   ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
                   : "foreground"
               }
+              href={item.href}
               className="w-full"
-              href="#"
               size="lg"
             >
-              {item}
+              {item.label}
             </Link>
           </NavbarMenuItem>
         ))}
