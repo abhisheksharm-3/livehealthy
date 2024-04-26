@@ -3,6 +3,7 @@ import NavbarComponent from "@/components/Navbar";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { MultiStepLoader as Loader } from "../components/ui/multi-step-loader";
 
 import {
   Form,
@@ -78,47 +79,106 @@ const AnalyseScreen = () => {
   const [showResult, setShowResult] = useState(false);
   const [predictionLabel, setPredictionLabel] = useState<string>("");
   const [requestData, setRequestData] = useState({});
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   type dataType = z.infer<typeof formSchema>;
 
-  
+  const loadingStates = [
+    {
+      text: "Crunching some numbers...and maybe some lettuce too.",
+    },
+    {
+      text: "Finding out if carrot sticks are better than mozzarella sticks.",
+    },
+    {
+      text: "Running virtual laps around the server room.",
+    },
+    {
+      text: "Consulting with my gym buddy...just kidding, it’s another algorithm.",
+    },
+    {
+      text: "Deciphering your data, one snack at a time.",
+    },
+    {
+      text: "On a coffee break—just like your metabolism.",
+    },
+    {
+      text: "Flexing our analytical muscles.",
+    },
+    {
+      text: "Are we there yet? Almost… Just a few bytes away!",
+    },
+    {
+      text: "Hang tight! We’re almost done measuring your fitness data.",
+    },
+    {
+      text: "Stepping on the data scale...hold tight.",
+    },
+    {
+      text: "Adjusting our virtual fitness trackers.",
+    },
+    {
+      text: "Tying the laces on our running algorithms.",
+    },
+    {
+      text: "Pumping up the last set of your data reps.",
+    },
+    {
+      text: "Your patience burns more calories than you think!",
+    },
+    {
+      text: "Loading... and no, you can't skip this by pressing Alt+F4.",
+    },
+  ];
 
   // 2. Define a submit handler.
   const onSubmit = async (values: dataType) => {
+    setLoading(true); // Start loading
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/analyse`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ data: { ...values } }),
-      });
-  
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/analyse`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data: { ...values } }),
+        }
+      );
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       const result = await response.json();
-      if (result && result.prediction_result && result.prediction_result.length > 0) {
-        const predictionIndex = result.prediction_result[0]; // Safely accessing the first item
-        const predictionLabel = predictionMapping[predictionIndex as PredictionKey];
+      if (
+        result &&
+        result.prediction_result &&
+        result.prediction_result.length > 0
+      ) {
+        const predictionIndex = result.prediction_result[0];
+        const predictionLabel =
+          predictionMapping[predictionIndex as PredictionKey];
         setPredictionLabel(predictionLabel!);
         setShowResult(true);
       } else {
-        throw new Error('Invalid prediction result');
+        throw new Error("Invalid prediction result");
       }
-  
+
       setRequestData(values);
       console.log(result);
     } catch (error) {
       console.error("Error posting data:", error);
+    } finally {
+      setLoading(false); // End loading
     }
-  };  
+  };
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-between overflow-hidden ">
+    <div className="h-screen w-screen flex flex-col items-center justify-between overflow-hidden pb-10 lg:pb-0">
+      <Loader loadingStates={loadingStates} loading={loading} duration={4000} />
       <NavbarComponent />
       {!showResult ? (
         <Form {...form}>
@@ -473,18 +533,24 @@ const AnalyseScreen = () => {
           {showResult && (
             <div className="space-y-4 max-w-2xl text-black">
               <h2 className="text-2xl font-semibold text-center text-white tracking-wide">
-                Your Current LifeStyle Suggests that you either have {predictionLabel} or are heading towards the same
+                Your Current LifeStyle Suggests that you either have{" "}
+                {predictionLabel} or are heading towards the same
               </h2>
               <div className="text-white shadow-md rounded-lg p-4">
                 <h3 className="text-lg font-semibold">Analysed User Data</h3>
-                <div className=""><ul className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-8">
-                  {Object.entries(requestData).map(([key, value]) => (
-                    <li key={key}>{`${key}: ${value}`}</li>
-                  ))}
-                </ul></div>
+                <div className="">
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-8">
+                    {Object.entries(requestData).map(([key, value]) => (
+                      <li key={key}>{`${key}: ${value}`}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               <Button
-                onClick={() => {setShowResult(false); form.reset}}
+                onClick={() => {
+                  setShowResult(false);
+                  form.reset();
+                }}
                 color="primary"
               >
                 Get a New Analysis

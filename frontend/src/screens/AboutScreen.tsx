@@ -72,7 +72,7 @@ const Card = ({
 
 const AboutScreen = () => {
   return (
-    <div className="h-screen flex flex-col justify-between overflow-hidden">
+    <div className="h-screen flex flex-col justify-between overflow-hidden pb-10 lg:pb-0">
       <NavbarComponent />
       <div className="container mx-auto px-4 py-12 overflow-scroll scrollbar-hide">
         <h1 className="text-4xl font-bold mb-8 text-center">

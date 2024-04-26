@@ -3,7 +3,7 @@ import NavbarComponent from "@/components/Navbar";
 
 const StatsScreen = () => {
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-between">
+    <div className="h-screen w-screen flex flex-col items-center justify-between pb-10 lg:pb-0">
       <NavbarComponent />
       <div className="flex flex-col items-center justify-center flex-1 container px-4 pt-56 scrollbar-hide overflow-scroll">
         <h1 className="text-4xl font-bold mb-6">Global Health and Obesity Stats</h1>
