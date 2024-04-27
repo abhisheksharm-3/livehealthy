@@ -1,3 +1,5 @@
+import { Button } from "@nextui-org/react";
+
 interface ResultDisplayProps {
   predictionLabel: string | null;
   requestData: Record<string, any>;
@@ -72,15 +74,15 @@ const DisplayResult: React.FC<ResultDisplayProps> = ({
             })}
           </ul>
           <div className="mt-6">
-            <button
+            <Button
               onClick={() => {
                 setShowResult(false);
                 form.reset(); // Assuming resetForm is a function that resets the form
               }}
-              className="bg-warning rounded px-4 py-2 text-white"
+              color="warning"
             >
               Roll the Dice Again on Your Health Analysis!
-            </button>
+            </Button>
           </div>
         </div>
       </div>
