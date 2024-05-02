@@ -80,7 +80,7 @@ const DisplayResult: React.FC<ResultDisplayProps> = ({
                 form.reset(); // Assuming resetForm is a function that resets the form
               }}
               color="warning"
-            >
+            >d
               Roll the Dice Again on Your Health Analysis!
             </Button>
           </div>

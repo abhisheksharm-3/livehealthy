@@ -90,39 +90,39 @@ const descriptiveLabels: DescriptiveLabels = {
 const formSchema = z.object({
   Age: z.coerce
     .number()
-    .min(0, { message: "Age must be at least 0." })
-    .max(120, { message: "Age must be no more than 120." }),
+    .min(0, { message: "Your age can't be a mystery! Must be at least 0." })
+    .max(120, { message: "Unless you’re a mythical creature, age should be no more than 120." }),
   Gender: z.coerce.number(),
   Height: z.coerce
     .number()
-    .min(50, { message: "Height must be at least 50 cm." })
-    .max(300, { message: "Height must be no more than 300 cm." }),
+    .min(50, { message: "C’mon, you’re taller than 50 cm, right?" })
+    .max(250, { message: "Unless you’re gigantically blessed, height should stay under 250 cm." }),
   Weight: z.coerce
     .number()
-    .min(10, { message: "Weight must be at least 10 kg." })
-    .max(500, { message: "Weight must be no more than 500 kg." }),
+    .min(10, { message: "You do weigh more than 10 kg, don’t you?" })
+    .max(300, { message: "If you’re over 300 kg, you might be a small whale." }),
   CALC: z.coerce.number(),
   FAVC: z.coerce.number(),
   FCVC: z.coerce.number(),
   NCP: z.coerce
     .number()
-    .min(1, { message: "NCP must be at least 1." })
-    .max(6, { message: "NCP must be no more than 6." }), // Assuming 1-6 are valid codes
+    .min(1, { message: "What's a meal without at least one main course?" })
+    .max(4, { message: "More than 4 meals? That’s a feast!" }),
   SCC: z.coerce.number(),
   SMOKE: z.coerce.number(),
   CH2O: z.coerce
     .number()
-    .min(0.1, { message: "CH2O must be at least 0.1 liters." })
-    .max(20, { message: "CH2O must be no more than 20 liters." }),
+    .min(0.1, { message: "Even cacti drink more! At least 0.1 liters, please." })
+    .max(10, { message: "More than 10 liters? Hope you’re not turning aquatic." }),
   family_history_with_overweight: z.coerce.number(),
   FAF: z.coerce
     .number()
-    .min(0, { message: "FAF must be at least 0 hours per week." })
-    .max(50, { message: "FAF must be no more than 50 hours per week." }),
+    .min(0, { message: "Zero workout? Let’s try to move a bit!" })
+    .max(40, { message: "Over 40 hours of workout a week? Even superheroes rest!" }),
   TUE: z.coerce
     .number()
-    .min(0, { message: "TUE must be at least 0 hours per day." })
-    .max(24, { message: "TUE must be no more than 24 hours per day." }),
+    .min(0, { message: "No tech at all? That's unplugged indeed!" })
+    .max(24, { message: "More than 24 hours? Are you time-traveling?" }),
   CAEC: z.coerce.number(),
   MTRANS: z.coerce.number(),
 });
