@@ -10,6 +10,27 @@ CORS(app)
 # Load your model and scaler (ensure these paths are correct)
 model = load('./models/obesityAI.joblib')
 scaler = load('./models/scaler.joblib')  # Load the scaler
+# Predefined statistics
+stats_summary = {
+    "Average Age": 24.312599908574136,
+    "Average Height": 1.7016773533870204,
+    "Average Number of Meals": 2.6856280497394596,
+    "Average Physical Activity Frequency": 1.0102976958787304,
+    "Average Technology Use (hours)": 0.657865923732828,
+    "Average Vegetable Consumption (scale 1-3)": 2.4190430615821885,
+    "Average Water Consumption (liters)": 2.0080114040738986,
+    "Average Weight": 86.58605812648035,
+    "Proportion Who Frequently Eat High Caloric Food": 0.8839412600663192,
+    "Proportion Who Smoke": 0.020843202273803884,
+    "Proportion with Family History of Overweight": 0.817621980104216
+}
+
+@app.route('/stats', methods=['GET'])
+def stats():
+    try:
+        return jsonify(stats_summary)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/analyse', methods=['POST'])
 def analyze():

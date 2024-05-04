@@ -72,7 +72,7 @@ const Card = ({
 
 const AboutScreen = () => {
   return (
-    <div className="h-screen flex flex-col justify-between overflow-hidden pb-10 lg:pb-0">
+    <div className="h-screen flex flex-col justify-between overflow-hidden pb-10 lg:pb-0 w-screen">
       <NavbarComponent />
       <div className="container mx-auto px-4 py-12 overflow-scroll scrollbar-hide">
         <h1 className="text-4xl font-bold mb-8 text-center">
@@ -86,7 +86,7 @@ const AboutScreen = () => {
           </p>
           <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-4 mx-auto px-8">
             <Card
-              title="This platform was born from a desire to apply machine learning in enhancing health. We focus on offering accessible, actionable obesity analytics."
+              title="Step into a world where data dances with empathy. Our health insights aren't just smart—they're crafted with care. We’re here to guide you, heartbeat by heartbeat, towards a healthier you."
               icon={<RiHeart2Fill />}
             >
               <CanvasRevealEffect
@@ -98,7 +98,7 @@ const AboutScreen = () => {
               <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
             <Card
-              title="Leveraging cutting-edge technology, our system utilizes machine learning models, including neural networks, to assess and predict obesity levels based on various health markers."
+              title="Ignite your wellness journey with insights that sparkle. Our AI doesn't just analyze; it enlightens your path to wellness with precision and creativity. Ready for some lightbulb moments in your health routine?"
               icon={<RiLightbulbFlashFill />}
             >
               <CanvasRevealEffect
@@ -114,13 +114,16 @@ const AboutScreen = () => {
               <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" />
             </Card>
             <Card
-              title="Join us in transforming how we understand and approach obesity. Our tools are designed for everyone from healthcare professionals to individuals seeking personal health insights."
+              title="Dive into a community where every member is a catalyst for change. From tech enthusiasts to health professionals, we all have one common goal: to transform the narrative of health, one insight at a time. Join us, and let's shape a healthier future together."
               icon={<RiTeamFill />}
             >
               <CanvasRevealEffect
                 animationSpeed={3}
-                containerClassName="bg-sky-600"
-                colors={[[125, 211, 252]]}
+                containerClassName="bg-[#000102]"
+                colors={[
+                  [59, 130, 246],
+                  [139, 92, 246],
+                ]}
                 dotSize={2}
               />
               {/* Radial gradient for the cute fade */}

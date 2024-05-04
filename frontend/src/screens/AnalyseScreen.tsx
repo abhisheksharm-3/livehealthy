@@ -95,8 +95,8 @@ const formSchema = z.object({
   Gender: z.coerce.number(),
   Height: z.coerce
     .number()
-    .min(50, { message: "C’mon, you’re taller than 50 cm, right?" })
-    .max(250, { message: "Unless you’re gigantically blessed, height should stay under 250 cm." }),
+    .min(0.5, { message: "C’mon, you’re taller than 50 cm, right?" })
+    .max(2.50, { message: "Unless you’re gigantically blessed, height should stay under 250 cm." }),
   Weight: z.coerce
     .number()
     .min(10, { message: "You do weigh more than 10 kg, don’t you?" })
@@ -229,7 +229,7 @@ const AnalyseScreen = () => {
     }
   };
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-between overflow-hidden pb-10 lg:pb-0">
+    <div className="h-screen w-screen flex flex-col items-center justify-between overflow-hidden pb">
       <Loader
         loadingStates={loadingStates}
         loading={loading}
@@ -290,7 +290,7 @@ const AnalyseScreen = () => {
                     <FormLabel>Height</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Altitude (Height in cm)"
+                        placeholder="Your Altitude (Height in meters)"
                         {...field}
                         type="number"
                       />

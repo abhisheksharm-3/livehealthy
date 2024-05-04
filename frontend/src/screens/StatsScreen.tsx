@@ -1,13 +1,14 @@
 import Footer from "@/components/Footer";
 import NavbarComponent from "@/components/Navbar";
+import { ScrollShadow } from "@nextui-org/react";
 
 const StatsScreen = () => {
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-between pb-10 lg:pb-0">
       <NavbarComponent />
-      <div className="flex flex-col items-center justify-center flex-1 container px-4 pt-[700px] lg:pt-56 scrollbar-hide overflow-scroll">
+      <div className="flex flex-col items-center justify-center flex-1 container px-4 py-5 lg:py-10 scrollbar-hide overflow-scroll">
         <h1 className="text-4xl font-bold mb-6 text-center">Global Health and Obesity Stats</h1>
-        <div className="rounded-lg shadow-lg max-w-4xl p-6 text-white">
+        <ScrollShadow hideScrollBar className="h-full rounded-lg shadow-lg max-w-4xl p-6 text-white">
           <div className="mb-6">
             <h2 className="text-2xl font-semibold mb-3">Body Mass Index (BMI)</h2>
             <p className="text-lg font-semibold">World Average: <span className="text-gray-200">25</span></p>
@@ -38,7 +39,7 @@ const StatsScreen = () => {
             <p className="text-base mb-2">Reflects general fitness levels around the world, showing significant room for improvement in the global population’s physical activity and fitness.</p>
             <p className="text-sm text-gray-300">A composite score based on aerobic fitness, strength, and flexibility.</p>
           </div>
-        </div>
+        </ScrollShadow>
       </div>
       <Footer />
     </div>
