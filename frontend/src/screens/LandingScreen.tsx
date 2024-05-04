@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
 import { LampContainer } from "@/components/ui/lamp";
 import { Button } from "@nextui-org/react";
-import { RiDropLine } from "@remixicon/react";
+import { RiRunLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
-// import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-// import { testimonials } from "@/constants/testimonials";
 const LandingScreen = () => {
   return (
     <div className="h-screen w-screen flex flex-col justify-around">
@@ -22,7 +20,7 @@ const LandingScreen = () => {
           <div className="flex flex-col items-center justify-center gap-10">
             <div className="flex flex-col items-center justify-center">
               <img src="/Images/logo.png" className="w-[50%]"/>
-              Size Matters<br /> Check Your Stats!
+              Crunch Numbers, Not Just Abs.<br /> See Where You Stand!
             </div>
             <Link to="/analyse">
               <Button
@@ -30,20 +28,14 @@ const LandingScreen = () => {
                 color="primary"
                 variant="shadow"
                 className="tracking-wider text-lg"
-                startContent={<RiDropLine />}
+                startContent={<RiRunLine />}
               >
-                Dive In & Analyze Now
+                Crunch My Numbers
               </Button>
             </Link>
           </div>
         </motion.h1>
       </LampContainer>
-      {/* <InfiniteMovingCards
-      className="translate-y-72 lg:translate-y-44 lg:translate-x-32 2xl:translate-y-72 2xl:translate-x-80"
-        items={testimonials}
-        direction="right"
-        speed="slow"
-      /> */}
     </div>
   );
 };
