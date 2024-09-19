@@ -25,7 +25,7 @@ stats_summary = {
     "Proportion with Family History of Overweight": 0.817621980104216
 }
 
-@app.route('/health', methods=['GET'])
+@app.route('/health', methods=['HEAD'])
 def health_check():
     return jsonify({"status": "healthy"}), 200
 
