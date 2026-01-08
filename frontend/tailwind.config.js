@@ -18,7 +18,8 @@ export default {
   prefix: "",
   theme: {
     fontFamily: {
-      sans: ['Poppins', 'sans-serif'],
+      sans: ['Outfit', 'system-ui', 'sans-serif'],
+      serif: ['Playfair Display', 'Georgia', 'serif'],
     },
     container: {
       center: true,

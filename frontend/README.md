@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# LiveHealthy Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI-powered health assessment tool with instant, personalized insights.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Framework**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS
+- **Forms**: React Hook Form + Zod
+- **Fonts**: Outfit (body) + Playfair Display (headings)
 
-## Expanding the ESLint configuration
+## Pages
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+| Route | Page | Description |
+|-------|------|-------------|
+| `/` | Landing | Hero section with feature highlights |
+| `/analyse` | Analyse | 16-field health questionnaire with AI prediction |
+| `/stats` | Statistics | Global health statistics overview |
+| `/about` | About | Project mission and privacy information |
 
-- Configure the top-level `parserOptions` property like this:
+## Project Structure
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+src/
+├── components/
+│   ├── analyse/      # Form and result display
+│   ├── layout/       # Navbar, Footer
+│   └── ui/           # Shadcn components
+├── pages/            # Route components
+├── constants/        # Form options, routes, mappings
+├── schemas/          # Zod validation schemas
+├── services/         # API layer
+└── types/            # TypeScript interfaces
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Environment Variables
+
+```env
+VITE_BACKEND_BASE_URL=http://localhost:5000
+```

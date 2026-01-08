@@ -1,28 +1,39 @@
-// App.js
-import React, { Suspense } from 'react';
+/**
+ * Application root component with lazy-loaded routes.
+ */
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import BaseLayout from './BaseLayout';
-import Loader from './components/Loader';
+import { BaseLayout } from '@/components/layout/BaseLayout';
+import { ROUTES } from '@/constants/routes';
 
-// Lazy load the route components
-const LandingScreen = React.lazy(() => import('./screens/LandingScreen'));
-const AnalyseScreen = React.lazy(() => import('./screens/AnalyseScreen'));
-const StatsScreen = React.lazy(() => import('./screens/StatsScreen'));
-const AboutScreen = React.lazy(() => import('./screens/AboutScreen'));
+// Lazy load pages for code splitting
+const LandingPage = lazy(() => import('@/pages/LandingPage').then(m => ({ default: m.LandingPage })));
+const AnalysePage = lazy(() => import('@/pages/AnalysePage').then(m => ({ default: m.AnalysePage })));
+const StatsPage = lazy(() => import('@/pages/StatsPage').then(m => ({ default: m.StatsPage })));
+const AboutPage = lazy(() => import('@/pages/AboutPage').then(m => ({ default: m.AboutPage })));
 
-const App = () => {
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+        <span className="text-neutral-500 text-sm">Loading...</span>
+      </div>
+    </div>
+  );
+}
+
+export default function App() {
   return (
     <BaseLayout>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<PageLoader />}>
         <Routes>
-          <Route path="/" element={<LandingScreen />} />
-          <Route path="/analyse" element={<AnalyseScreen />} />
-          <Route path="/stats" element={<StatsScreen />} />
-          <Route path="/about" element={<AboutScreen />} />
+          <Route path={ROUTES.HOME} element={<LandingPage />} />
+          <Route path={ROUTES.ANALYSE} element={<AnalysePage />} />
+          <Route path={ROUTES.STATS} element={<StatsPage />} />
+          <Route path={ROUTES.ABOUT} element={<AboutPage />} />
         </Routes>
       </Suspense>
     </BaseLayout>
   );
-};
-
-export default App;
+}
